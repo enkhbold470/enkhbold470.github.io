@@ -27,6 +27,7 @@
 	},
 	"dependencies": {
 		"@fontsource/noto-serif": "^5.2.9",
+		"@types/node": "^25.9.1",
 		"@vercel/analytics": "^2.0.1",
 		"lucide-svelte": "^1.0.1",
 		"rss-parser": "^3.13.0"
