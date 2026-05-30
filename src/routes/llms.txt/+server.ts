@@ -54,7 +54,7 @@ export const GET: RequestHandler = ({ setHeaders }) => {
 
   push('## At a glance');
   push(`- ${s.hackathonsWon} wins across ${s.hackathonsEntered} hackathons (incl. YC Agent Hack, Stanford TreeHacks, HackMIT, MIT Energy, Harvard)`);
-  push(`- Organized/hosted ${s.hosted} hackathons (DA Hacks 3.0 & 3.5; ${s.prizePool} in prizes)`);
+  push(`- Organized/hosted ${s.hosted} hackathons (DA Hacks 3.0 & 3.5)`);
   push(`- FIRST Global 2019 (Dubai): led Mongolia's national team to ${ordinal(s.firstGlobalRank)} of ${s.nations} nations`);
   push(`- ~${s.commitsFloor.toLocaleString('en-US')}+ GitHub commits across ${s.publicRepos}+ public repos; open-source hardware on OSHWLab/EasyEDA`);
   push(`- ${s.videos}+ build videos on YouTube; building robots since age 15`);

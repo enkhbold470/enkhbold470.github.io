@@ -27,7 +27,7 @@
   }
   // non-visual equivalent for the color-based net highlight (WCAG 1.4.1 / 4.1.3)
   const NET_LABEL: Record<string, string> = {
-    PWR: 'power', HACK: 'hackathon wins', CLK: 'commit clock', HOST: 'hosted events',
+    PWR: 'power', HACK: 'hackathon wins', CLK: 'commit clock',
     IO: 'Google I/O', FGC: 'FIRST Global', ERRATA: 'errata', BUS: 'profiles', MCU: 'system bus'
   };
   const netAnnounce = $derived(
@@ -47,13 +47,12 @@
     { net: 'PWR',    to: 'title',  from: ['top', 0.22],    toAt: ['bottom', 0.18] },
     { net: 'HACK',   to: 'u1',     from: ['right', 0.16],  toAt: ['left', 0.5] },
     { net: 'CLK',    to: 'y1',     from: ['right', 0.36],  toAt: ['left', 0.5] },
-    { net: 'HOST',   to: 'c1',     from: ['right', 0.56],  toAt: ['left', 0.5] },
-    { net: 'IO',     to: 'j1',     from: ['right', 0.76],  toAt: ['left', 0.5] },
+    { net: 'IO',     to: 'j1',     from: ['right', 0.7],   toAt: ['left', 0.5] },
     { net: 'FGC',    to: 'edge',   from: ['bottom', 0.72], toAt: ['top', 0.5] },
     { net: 'ERRATA', to: 'errata', from: ['bottom', 0.32], toAt: ['top', 0.4] },
     { net: 'BUS',    to: 'footer', from: ['bottom', 0.5],  toAt: ['top', 0.16] }
   ];
-  const MOBILE_ORDER = ['title', 'mcu', 'u1', 'y1', 'c1', 'j1', 'edge', 'errata', 'footer'];
+  const MOBILE_ORDER = ['title', 'mcu', 'u1', 'y1', 'j1', 'edge', 'errata', 'footer'];
 
   // element refs cached once at mount — measure() avoids 9 querySelectors per resize
   const fpCache = new Map<string, HTMLElement>();
@@ -335,24 +334,8 @@
         <span class="net-badge font-instr" aria-hidden="true">NET: CLK_MAIN</span>
       </figure>
 
-      <figure class="fp comp {netState('HOST')}" data-fp="c1" data-net="HOST" style="--i:3">
-        <div class="ref font-silk">C1 · 100µF</div>
-        <svg class="sym" viewBox="0 0 40 30" aria-hidden="true">
-          <line x1="4" y1="15" x2="17" y2="15" />
-          <line x1="17" y1="4" x2="17" y2="26" />
-          <path d="M23 4 a9 9 0 0 0 0 22" fill="none" />
-          <line x1="26" y1="15" x2="36" y2="15" />
-          <text x="9" y="11" class="silk-mini">+</text>
-        </svg>
-        <div class="readouts">
-          <span class="stat"><Readout value={s.hosted} animate={animateCounters} /><b class="font-silk">HOSTED</b></span>
-          <span class="stat"><span class="lit font-instr">{s.prizePool}</span><b class="font-silk">POOL</b></span>
-        </div>
-        <div class="note font-silk">DAHACKS · DAHACKS 3.0</div>
-        <span class="net-badge font-instr" aria-hidden="true">NET: HOST_PWR</span>
-      </figure>
 
-      <figure class="fp comp {netState('IO')}" data-fp="j1" data-net="IO" style="--i:4">
+      <figure class="fp comp {netState('IO')}" data-fp="j1" data-net="IO" style="--i:3">
         <div class="ref font-silk">J1 · HEADER</div>
         <svg class="sym" viewBox="0 0 44 30" aria-hidden="true">
           <rect x="4" y="9" width="36" height="12" rx="1.5" />
@@ -365,7 +348,7 @@
         <span class="net-badge font-instr" aria-hidden="true">NET: GOOGLE_IO</span>
       </figure>
 
-      <figure class="fp comp edge {netState('FGC')}" data-fp="edge" data-net="FGC" style="--i:5">
+      <figure class="fp comp edge {netState('FGC')}" data-fp="edge" data-net="FGC" style="--i:4">
         <div class="ref font-silk">P1 · EDGE</div>
         <div class="fingers" aria-hidden="true">
           {#each Array(7) as _, i (i)}<span class="finger"></span>{/each}
@@ -382,7 +365,7 @@
     </div>
 
     <!-- ERRATA / UPDATES -->
-    <section class="fp errata {netState('ERRATA')}" data-fp="errata" data-net="ERRATA" style="--i:6">
+    <section class="fp errata {netState('ERRATA')}" data-fp="errata" data-net="ERRATA" style="--i:5">
       <h2 aria-label="Updates" class="ref font-silk">ERRATA</h2>
       <ul>
         {#each recentUpdates as u (u.date)}
@@ -399,7 +382,7 @@
     </section>
 
     <!-- BOTTOM SILK / FOOTER -->
-    <footer class="fp foot {netState('BUS')}" data-fp="footer" data-net="BUS" style="--i:7">
+    <footer class="fp foot {netState('BUS')}" data-fp="footer" data-net="BUS" style="--i:6">
       <div class="silk-line font-silk">
         <span>REV&nbsp;A</span><span class="sep">·</span><span>enk.icu</span><span class="sep">·</span><span>©&nbsp;2026</span>
       </div>

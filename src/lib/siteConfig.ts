@@ -29,7 +29,6 @@ stats: {
 hackathonsEntered: number;
 hackathonsWon: number;
 hosted: number;
-prizePool: string;
 commitsFloor: number;
 nations: number;
 firstGlobalRank: number;
@@ -55,7 +54,7 @@ export const siteConfig: SiteConfig = {
   locale: 'en_US',
   type: 'website',
   bio: {
-    text: 'I build at the seam of hardware and software — brain–computer interfaces, autonomous robots, and AI systems. 11× winner across 26 hackathons (YC Agent Hack, TreeHacks, HackMIT, MIT Energy, Harvard) and host of 4 ([DAHacks], [DAHacks 3.0]). ~5,100 commits on [Github]; open hardware on [OSHWLab]; selected for [Google I/O] 2024 & 2025. Led Mongolia at [FIRST Global 2019]. More on [blogs] and [medium].',
+    text: 'I build at the seam of hardware and software — brain–computer interfaces, autonomous robots, and AI systems. 11× winner across 26 hackathons (YC Agent Hack, TreeHacks, HackMIT, MIT Energy, Harvard) and host of 4 ([DAHacks], [DAHacks 3.0]). ~5,900 commits on [Github]; open hardware on [OSHWLab]; selected for [Google I/O] 2024 & 2025. Led Mongolia at [FIRST Global 2019]. More on [blogs] and [medium].',
     links: [
       {
         text: 'medium',
@@ -105,8 +104,7 @@ export const siteConfig: SiteConfig = {
     hackathonsEntered: 26,
     hackathonsWon: 11,
     hosted: 4,
-    prizePool: '$7,500+',
-    commitsFloor: 5100,
+    commitsFloor: 5900,
     nations: 190,
     firstGlobalRank: 32,
     publicRepos: 200,
@@ -146,7 +144,7 @@ export const siteConfig: SiteConfig = {
 export const recentUpdates = [
   {
     date: 'October 31, 2024',
-    title: 'Student hackers compete at DAHacks 3.0 hack-a-thon for over $7,500 in prizes',
+    title: 'Student hackers compete at DAHacks 3.0 hack-a-thon',
     url: 'https://lavozdeanza.com/multimedia/video/2024/10/31/student-hackers-compete-at-da-hacks-3-0-hack-a-thon-for-over-7500-in-prizes/'
   },
   {
@@ -303,7 +301,7 @@ export const judging: JudgingItem[] = [
     ref: 'TP2',
     title: 'Tech Lead, Organizing Team',
     org: 'DA Hacks 3.0 & 3.5 · De Anza',
-    detail: 'On the organizing/tech team for both events ($7,500+ in prizes); built the judging tooling used to run them.'
+    detail: 'On the organizing/tech team for both events; built the judging tooling used to run them.'
   },
   {
     ref: 'TP3',
