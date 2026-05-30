@@ -42,7 +42,6 @@ export const GET: RequestHandler = async ({ setHeaders }) => {
   const entries = [
     urlEntry(`${base}/`, now, 'weekly', '1.0'),
     urlEntry(`${base}/blog`, now, 'daily', '0.8'),
-    urlEntry(`${base}/books`, now, 'monthly', '0.6'),
     ...slugs.map(({ slug, lastMod }) =>
       urlEntry(`${base}/blog/${slug}`, lastMod || now, 'weekly', '0.7')
     )

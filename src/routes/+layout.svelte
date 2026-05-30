@@ -35,4 +35,6 @@
 <StructuredData type="ProfilePage" />
 <ThemeToggle />
 
-{@render children()}
+<div class="board-substrate">
+  {@render children()}
+</div>

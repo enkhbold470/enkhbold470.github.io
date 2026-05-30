@@ -10,7 +10,7 @@ test.describe('founder-bio SvelteKit migration', () => {
     await expect(page.getByRole('link', { name: 'Github' }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: 'LinkedIn' })).toBeVisible();
 
-    await expect(page.getByRole('link', { name: 'medium' })).toHaveAttribute(
+    await expect(page.getByRole('link', { name: 'medium', exact: true })).toHaveAttribute(
       'href',
       'https://enkhy.medium.com/'
     );
@@ -77,5 +77,15 @@ test.describe('founder-bio SvelteKit migration', () => {
     expect(body).toContain('<loc>https://enk.icu/</loc>');
     expect(body).toContain('<loc>https://enk.icu/blog</loc>');
     expect((body.match(/<url>/g) ?? []).length).toBeGreaterThanOrEqual(3);
+  });
+
+  test('llms.txt is served as a profile brief for LLMs', async ({ request }) => {
+    const res = await request.get('/llms.txt');
+    expect(res.status()).toBe(200);
+    expect(res.headers()['content-type']).toContain('text/plain');
+    const body = await res.text();
+    expect(body).toContain('# Inky Ganbold');
+    expect(body).toContain('## Awards & honors');
+    expect(body).toContain('github.com/enkhbold470');
   });
 });

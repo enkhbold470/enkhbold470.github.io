@@ -18,6 +18,7 @@
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
 		"@tailwindcss/vite": "^4.3.0",
+		"@types/sanitize-html": "^2.16.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
 		"tailwindcss": "^4.3.0",
@@ -26,10 +27,13 @@
 		"vitest": "^4.1.7"
 	},
 	"dependencies": {
-		"@fontsource/noto-serif": "^5.2.9",
+		"@fontsource-variable/fraunces": "^5.2.9",
+		"@fontsource/chivo-mono": "^5.2.8",
+		"@fontsource/ibm-plex-mono": "^5.2.7",
 		"@types/node": "^25.9.1",
 		"@vercel/analytics": "^2.0.1",
 		"lucide-svelte": "^1.0.1",
-		"rss-parser": "^3.13.0"
+		"rss-parser": "^3.13.0",
+		"sanitize-html": "^2.17.4"
 	}
 }

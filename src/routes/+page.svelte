@@ -1,8 +1,10 @@
 <script lang="ts">
-  import { siteConfig, recentUpdates } from '$lib/siteConfig';
-  import { tokenizeBio } from '$lib/bioLinks';
+  import { siteConfig } from '$lib/siteConfig';
+  import Board from '$lib/Board.svelte';
+  import Dossier from '$lib/Dossier.svelte';
+  import type { PageData } from './$types';
 
-  const bioTokens = tokenizeBio(siteConfig.bio.text, siteConfig.bio.links);
+  let { data }: { data: PageData } = $props();
 </script>
 
 <svelte:head>
@@ -13,58 +15,53 @@
   <meta property="profile:username" content="1nkfy" />
 </svelte:head>
 
-<div class="min-h-screen overflow-hidden flex flex-col justify-center items-center p-4 sm:p-6 md:p-8">
-  <main class="flex flex-col items-center justify-center max-w-[400px] gap-4">
-    <header class="flex flex-col gap-4">
-      <h1 class="name">Hi, I'm {siteConfig.name}</h1>
-      <div class="flex gap-6">
-        {#each siteConfig.contactDisplay as contact, i (contact.type + i)}
-          <p>
-            <a
-              href={contact.url}
-              aria-label="{siteConfig.name} {contact.label}"
-              target={contact.external ? '_blank' : undefined}
-              rel={contact.external ? 'noopener noreferrer' : undefined}
-            >
-              {contact.value}
-            </a>
-          </p>
-        {/each}
-      </div>
-      <p class="text-left text-spacing-4">
-        {#each bioTokens as token, i (i)}
-          {#if token.kind === 'text'}{token.value}{:else}<a
-              href={token.url}
-              target={token.external ? '_blank' : undefined}
-              rel={token.external ? 'noopener noreferrer' : undefined}>{token.text}</a
-            >{/if}
-        {/each}
-      </p>
-    </header>
+<style>
+  .bridge {
+    width: min(1180px, 100%);
+    margin: 0.5rem auto 2.5rem;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .bridge-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 45%, transparent), transparent);
+  }
+  .bridge-label {
+    font-family: var(--silk, 'Chivo Mono', monospace);
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .bridge-chev {
+    color: var(--accent-ink);
+    font-size: 0.7rem;
+    animation: bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bridge-chev { animation: none; }
+  }
+</style>
 
-    <section class="text-center w-full">
-      <h2 class="title">Updates</h2>
-      <ul class="list-disc list-inside space-y-2 text-left mx-2 my-2">
-        {#each recentUpdates as update (update.date)}
-          <li class="pl-1">
-            <span class="font-semibold">{update.date}</span>{': '}
-            <a
-              href={update.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="transition-colors hover:text-blue-600 underline"
-            >
-              {update.title}
-            </a>
-          </li>
-        {/each}
-      </ul>
-    </section>
-  </main>
+<!-- single <main> root: gives the page one root element so SvelteKit's
+     production hydration can't misalign bare component-to-component siblings
+     (which was silently discarding the dossier). Also a proper main landmark. -->
+<main class="home">
+  <Board commits={data.commits} />
 
-  <footer class="text-center p-4 sm:p-6 bottom-0">
-    <p class="text-left">
-      <a href="/blog">Blog</a>
-    </p>
-  </footer>
-</div>
+  <div class="bridge" aria-hidden="true">
+    <span class="bridge-line"></span>
+    <span class="bridge-label">FULL DOSSIER</span>
+    <span class="bridge-chev">▾</span>
+    <span class="bridge-line"></span>
+  </div>
+
+  <Dossier posts={data.posts} />
+</main>

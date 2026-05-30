@@ -1,108 +1,148 @@
 @import "tailwindcss";
-@import "@fontsource/noto-serif/400.css";
-@import "@fontsource/noto-serif/600.css";
-@import "@fontsource/noto-serif/700.css";
-@import "@fontsource/noto-serif/800.css";
+
+/* ── Typeface system ──────────────────────────────────────────────
+   Fraunces Variable  → wordmark + running prose (the human/serif axis)
+   Chivo Mono         → silkscreen labels, refdes, component values
+   IBM Plex Mono      → instrument readouts, datelines, clock, tooltips */
+@import "@fontsource-variable/fraunces/standard.css";
+@import "@fontsource-variable/fraunces/standard-italic.css";
+@import "@fontsource/chivo-mono/400.css";
+@import "@fontsource/chivo-mono/600.css";
+@import "@fontsource/chivo-mono/700.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ── Design tokens ────────────────────────────────────────────────
+   REV_A — "The Board". Warm FR-4 substrate, copper traces,
+   solder-mask greens. Two instrument colors only: copper + green. */
+:root {
+  --bg:       #e8e2d4;  /* FR-4 substrate, light */
+  --surface:  #ded7c6;  /* raised panel / solder-mask */
+  --fg:       #1c1b17;  /* ink */
+  --muted:    #565241;  /* dim silkscreen (AA on bg) */
+  --accent:   #b06a3a;  /* copper — large numerals, traces, graphics */
+  --accent-ink: #8e5429; /* deeper copper — small text/links (AA on bg) */
+  --accent2:  #1a5444;  /* solder-mask green (AA on bg) */
+  --border:   #c7bfa9;  /* hairline */
+
+  --trace:     var(--accent);
+  --trace-hot: color-mix(in oklab, var(--accent), #fff 34%);
+  --trace-dim: color-mix(in srgb, var(--accent) 26%, var(--bg));
+  --via-ring:  color-mix(in srgb, var(--accent) 60%, var(--fg) 14%);
+  --pad:       color-mix(in oklab, var(--accent), #fff 8%);
+  --grid:      color-mix(in srgb, var(--muted) 26%, transparent);
+  --hatch:     color-mix(in srgb, var(--accent) 9%, transparent);
+  --weave:     color-mix(in srgb, var(--border) 55%, transparent);
+  --glow:      transparent;            /* no phosphor glow in light */
+
+  --display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --silk:    "Chivo Mono", ui-monospace, SFMono-Regular, monospace;
+  --instr:   "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+.dark {
+  --bg:       #0e1512;
+  --surface:  #14201b;
+  --fg:       #e7e3d6;
+  --muted:    #8a968d;
+  --accent:   #e0a05a;  /* copper-amber, lit */
+  --accent-ink: #e0a05a; /* lit copper reads fine on dark — reuse accent */
+  --accent2:  #34d399;  /* phosphor green */
+  --border:   #243029;
+
+  --trace:     var(--accent);
+  --trace-hot: color-mix(in oklab, var(--accent), #fff 22%);
+  --trace-dim: color-mix(in srgb, var(--accent) 22%, var(--bg));
+  --via-ring:  color-mix(in srgb, var(--accent) 70%, var(--fg) 8%);
+  --pad:       color-mix(in oklab, var(--accent), #fff 4%);
+  --grid:      color-mix(in srgb, var(--accent2) 10%, transparent);
+  --hatch:     color-mix(in srgb, var(--accent) 7%, transparent);
+  --weave:     color-mix(in srgb, var(--border) 70%, transparent);
+  --glow:      color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+html { background-color: var(--bg); }
+
 body {
-  font-size: clamp(14pt, 4vw, 16pt);
-  overflow-x: hidden;
-  background-color: #efe6e6;
-  color: #202124;
-  font-family: 'Noto Serif', serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--display);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.dark body {
-  background-color: #202124;
-  color: #efe6e6;
+/* ── The FR-4 substrate that the whole site sits on ─────────────── */
+.board-substrate {
+  position: relative;
+  min-height: 100svh;
+  isolation: isolate;
+  background-color: var(--bg);
+  /* layered: silkscreen 0.1in dot grid · ground-pour hatch · glass weave */
+  background-image:
+    radial-gradient(var(--grid) 0.6px, transparent 0.7px),
+    repeating-linear-gradient(45deg, var(--hatch) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(0deg,  var(--weave) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, var(--weave) 0 1px, transparent 1px 4px);
+  background-size: 24px 24px, 9px 9px, 4px 4px, 4px 4px;
+  background-position: center;
+}
+/* dark mode bench-light: warm vignette pooled at center */
+.dark .board-substrate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 50% 38%,
+    color-mix(in srgb, var(--accent) 7%, transparent) 0%,
+    transparent 60%);
 }
 
-.name {
-  font-size: clamp(20pt, 6vw, 24pt);
-  text-align: left;
-  line-height: 1.2;
-  font-weight: 800;
-}
-
-.title {
-  font-size: clamp(18pt, 5vw, 18pt);
-  text-align: left;
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-  font-weight: 600;
-}
-
-footer {
-  font-size: clamp(10pt, 3vw, 12pt);
-  gap: clamp(8px, 2vw, 10px);
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 480px) {
-  footer {
-    flex-direction: row;
-    gap: 10px;
-    align-items: flex-start;
-  }
-}
-
-p {
-  font-size: clamp(10pt, 3.5vw, 12pt);
-  font-style: italic;
-  text-align: left;
-  line-height: 1.5;
-  word-wrap: break-word;
-  hyphens: auto;
-}
-
+/* ── Base typography resets (replaces old serif/cyan rules) ─────── */
 a {
-  color: #1a1a1a;
-  text-decoration: underline;
-  transition: color 0.3s ease;
+  color: var(--accent-ink);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+a:hover { text-decoration: underline; }
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-a:hover {
-  color: #2563eb;
-  text-decoration: underline;
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--fg);
 }
 
-.dark a {
-  color: #e5e5e5;
+.font-silk  { font-family: var(--silk); }
+.font-instr { font-family: var(--instr); }
+.tnum       { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+/* Screen-reader-only accessible layer (board SVG is aria-hidden) */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-.dark a:hover {
-  color: #60a5fa;
-}
-
-span {
-  background-color: #00ffff;
-  transition: background-color 0.3s ease;
-}
-
-.dark span {
-  background-color: #696969;
-}
-
-ul {
-  font-size: clamp(10pt, 3.5vw, 12pt);
-  font-style: italic;
-  text-align: left;
-  line-height: 1.5;
-  word-wrap: break-word;
-  hyphens: auto;
-  list-style-type: disc;
-  list-style-position: inside;
-  margin-left: 0.5rem;
-  padding-left: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+/* Global motion safety net (components also self-guard) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
