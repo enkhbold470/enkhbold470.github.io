@@ -11,11 +11,11 @@
     description: siteConfig.description,
     url: siteConfig.url,
     email: siteConfig.contact.email,
-    jobTitle: 'Computer Science Student & Open Source Contributor',
-    affiliation: {
-      '@type': 'EducationalOrganization',
-      name: 'De Anza College'
-    },
+    jobTitle: 'Hardware & Software Developer · 11× Hackathon Winner',
+    alumniOf: [
+      { '@type': 'CollegeOrUniversity', name: 'San Jose State University' },
+      { '@type': 'CollegeOrUniversity', name: 'De Anza College' }
+    ],
     sameAs: [
       siteConfig.contact.linkedin,
       siteConfig.contact.x,
@@ -43,7 +43,9 @@
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
     dateCreated: '2025-01-01T00:00:00+00:00',
-    dateModified: new Date().toISOString(),
+    // static (not `new Date()`) so SSR and client render identical markup —
+    // a non-deterministic value here causes a hydration mismatch
+    dateModified: '2026-05-30T00:00:00+00:00',
     mainEntity: personSchema,
     about: personSchema,
     url: siteConfig.url,
@@ -51,7 +53,7 @@
     description: siteConfig.description
   };
 
-  const schema = type === 'ProfilePage' ? profilePageSchema : personSchema;
+  const schema = $derived(type === 'ProfilePage' ? profilePageSchema : personSchema);
 </script>
 
 <svelte:head>

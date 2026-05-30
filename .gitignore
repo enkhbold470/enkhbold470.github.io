@@ -26,3 +26,8 @@ vite.config.ts.timestamp-*
 /test-results
 /playwright-report
 /playwright/.cache
+/.playwright-mcp
+
+# Local verification screenshots (scratch)
+/before-*.png
+/after-*.png
