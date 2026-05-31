@@ -87,8 +87,8 @@
     column-gap: 0.26em;
     row-gap: 0;
     font-family: var(--display);
-    font-size: clamp(2.7rem, 10.5vw, 7.5rem);
-    line-height: 0.9;
+    font-size: clamp(2.5rem, 13vw, 7.5rem);
+    line-height: 0.92;
     letter-spacing: -0.02em;
     color: var(--fg);
     text-transform: uppercase;

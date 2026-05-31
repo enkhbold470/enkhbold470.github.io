@@ -2,7 +2,7 @@
   import '../app.css';
   import { inject } from '@vercel/analytics';
   import { onMount } from 'svelte';
-  import ThemeToggle from '$lib/ThemeToggle.svelte';
+  import Header from '$lib/Header.svelte';
   import StructuredData from '$lib/StructuredData.svelte';
   import { siteConfig } from '$lib/siteConfig';
 
@@ -33,8 +33,8 @@
 </svelte:head>
 
 <StructuredData type="ProfilePage" />
-<ThemeToggle />
 
 <div class="board-substrate">
+  <Header />
   {@render children()}
 </div>

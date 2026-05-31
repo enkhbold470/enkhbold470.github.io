@@ -318,12 +318,18 @@
   }
 
   @media (max-width: 760px) {
+    .dossier { padding-inline: 1.3rem; gap: 3rem; }
     .projects, .judging { grid-template-columns: 1fr; }
     .awards { columns: 1; }
-    .pub { grid-template-columns: 2.6rem 1fr; }
-    .pub .pdetail { grid-column: 2; }
-    .impact { grid-template-columns: repeat(3, 1fr); gap: 1.2rem 1rem; }
-    .post-list a { grid-template-columns: 1fr auto; }
+    .pub { grid-template-columns: 1fr; gap: 0.15rem 0.6rem; padding: 0.9rem 0; }
+    .pub .ref { display: none; }
+    .pub .pdetail { grid-column: 1; }
+    .impact { grid-template-columns: repeat(3, 1fr); gap: 1.3rem 0.8rem; }
+    .thesis { font-size: 1.2rem; }
+    .post-list a { grid-template-columns: 1fr auto; padding: 0.85rem 0; }
     .pdate { grid-column: 1 / -1; }
+  }
+  @media (max-width: 420px) {
+    .impact { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
