@@ -384,7 +384,7 @@
     <!-- BOTTOM SILK / FOOTER -->
     <footer class="fp foot {netState('BUS')}" data-fp="footer" data-net="BUS" style="--i:6">
       <div class="silk-line font-silk">
-        <span>REV&nbsp;A</span><span class="sep">·</span><span>enk.icu</span><span class="sep">·</span><span>©&nbsp;2026</span>
+        <span>REV&nbsp;A</span><span class="sep">·</span><span>inkyg.com</span><span class="sep">·</span><span>©&nbsp;2026</span>
       </div>
       <nav class="connectors" aria-label="Profiles">
         {#each siteConfig.contactDisplay as c, i (c.label)}
