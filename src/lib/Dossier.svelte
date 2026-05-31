@@ -12,6 +12,7 @@
   }: { posts?: { title: string; slug: string; pubDate: string; image: string }[] } = $props();
 
   const stats = siteConfig.stats;
+  const awardsSub = `${stats.hackathonsWon} wins · ${stats.hackathonsEntered} hackathons · nationally & internationally recognized`;
   const metrics = [
     { value: stats.hackathonsEntered, suffix: '', label: 'hackathons' },
     { value: stats.hackathonsWon, suffix: '', label: 'wins' },
