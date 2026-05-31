@@ -126,7 +126,7 @@
 
   <!-- §04 — awards & recognized prizes -->
   <section class="block">
-    <SecHeader idx="§04" title="AWARDS & HONORS" sub="11 wins · 26 hackathons · nationally & internationally recognized" />
+    <SecHeader idx="§04" title="AWARDS & HONORS" sub={awardsSub} />
     <ol class="awards">
       {#each awards as a, i (a.title + a.date + i)}
         <li class="award" data-reveal>
