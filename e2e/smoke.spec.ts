@@ -66,7 +66,7 @@ test.describe('founder-bio SvelteKit migration', () => {
     expect(res.status()).toBe(200);
     const body = await res.text();
     expect(body).toContain('User-agent: *');
-    expect(body).toContain('Sitemap: https://enk.icu/sitemap.xml');
+    expect(body).toContain('Sitemap: https://inkyg.com/sitemap.xml');
   });
 
   test('sitemap.xml is well-formed and includes blog posts', async ({ request }) => {
@@ -74,8 +74,8 @@ test.describe('founder-bio SvelteKit migration', () => {
     expect(res.status()).toBe(200);
     const body = await res.text();
     expect(body.startsWith('<?xml')).toBe(true);
-    expect(body).toContain('<loc>https://enk.icu/</loc>');
-    expect(body).toContain('<loc>https://enk.icu/blog</loc>');
+    expect(body).toContain('<loc>https://inkyg.com/</loc>');
+    expect(body).toContain('<loc>https://inkyg.com/blog</loc>');
     expect((body.match(/<url>/g) ?? []).length).toBeGreaterThanOrEqual(3);
   });
 

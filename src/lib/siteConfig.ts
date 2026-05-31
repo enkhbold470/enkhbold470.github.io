@@ -50,7 +50,7 @@ export const siteConfig: SiteConfig = {
   description: 'Portfolio of Inky Ganbold, a CS student at De Anza who has won 11 prizes across 26 hackathons including YC Agent Hack, Stanford TreeHacks, HackMIT, and MIT Energy Hack. Active open-source contributor and hackathon organizer.',
   author: 'Inky Ganbold',
   keywords: ['Inky Ganbold', 'hackathon winner', 'computer science', 'open source', 'Stanford TreeHacks', 'HackMIT', 'YC Agent Hack', 'De Anza College', 'software developer', 'hackathon organizer'],
-  url: 'https://enk.icu',
+  url: 'https://inkyg.com',
   locale: 'en_US',
   type: 'website',
   bio: {
@@ -111,7 +111,7 @@ export const siteConfig: SiteConfig = {
     videos: 70
   },
   contact: {
-    email: 'inky@enk.icu',
+    email: 'inky@inkyg.com',
     linkedin: 'https://www.linkedin.com/in/enkhbold470/',
     x: 'https://x.com/1nkfy',
     github: 'https://github.com/enkhbold470'

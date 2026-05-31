@@ -35,7 +35,7 @@
 <header class="site-header" class:scrolled aria-label="Site">
   <nav class="bar">
     <a class="mark" href="/" aria-label="Home — Inky Ganbold">
-      <span>enk</span><span class="dot">.</span><span>icu</span>
+      <span>inkyg</span><span class="dot">.</span><span>com</span>
     </a>
     <div class="right">
       <a class="navlink" href="/blog">Blog</a>

@@ -24,7 +24,7 @@ export const load: PageServerLoad = async ({ setHeaders, fetch }) => {
       {
         headers: {
           Accept: 'application/vnd.github.cloak-preview+json',
-          'User-Agent': 'enk.icu'
+          'User-Agent': 'inkyg.com'
         }
       }
     );
