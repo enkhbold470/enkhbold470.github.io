@@ -15,17 +15,17 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ── Design tokens ────────────────────────────────────────────────
-   REV_A — "The Board". Warm FR-4 substrate, copper traces,
-   solder-mask greens. Two instrument colors only: copper + green. */
+   "The Board", Greek-themed: marble substrate, Aegean-blue traces,
+   terracotta accents. Aegean blue + terracotta on marble/night. */
 :root {
-  --bg:       #e8e2d4;  /* FR-4 substrate, light */
-  --surface:  #ded7c6;  /* raised panel / solder-mask */
-  --fg:       #1c1b17;  /* ink */
-  --muted:    #565241;  /* dim silkscreen (AA on bg) */
-  --accent:   #b06a3a;  /* copper — large numerals, traces, graphics */
-  --accent-ink: #8e5429; /* deeper copper — small text/links (AA on bg) */
-  --accent2:  #1a5444;  /* solder-mask green (AA on bg) */
-  --border:   #c7bfa9;  /* hairline */
+  --bg:       #f4f0e6;  /* marble */
+  --surface:  #ebe4d3;  /* limestone panel */
+  --fg:       #1b2a33;  /* deep Aegean ink */
+  --muted:    #545e6a;  /* stone-blue (AA on bg) */
+  --accent:   #1e6f9b;  /* Aegean blue — traces, numerals, graphics */
+  --accent-ink: #125478; /* deep Aegean — small text/links (AA on bg) */
+  --accent2:  #a84f27;  /* terracotta (AA on bg) */
+  --border:   #d9d1be;  /* marble hairline */
 
   --trace:     var(--accent);
   --trace-hot: color-mix(in oklab, var(--accent), #fff 34%);
@@ -43,14 +43,14 @@
 }
 
 .dark {
-  --bg:       #0e1512;
-  --surface:  #14201b;
-  --fg:       #e7e3d6;
-  --muted:    #8a968d;
-  --accent:   #e0a05a;  /* copper-amber, lit */
-  --accent-ink: #e0a05a; /* lit copper reads fine on dark — reuse accent */
-  --accent2:  #34d399;  /* phosphor green */
-  --border:   #243029;
+  --bg:       #0e1822;  /* Aegean night */
+  --surface:  #16222e;
+  --fg:       #ece7d9;  /* marble */
+  --muted:    #929ba8;
+  --accent:   #5aa9d6;  /* lit Aegean blue */
+  --accent-ink: #5aa9d6; /* light blue reads fine on dark — reuse accent */
+  --accent2:  #e2a05c;  /* warm terracotta / gold */
+  --border:   #243441;
 
   --trace:     var(--accent);
   --trace-hot: color-mix(in oklab, var(--accent), #fff 22%);

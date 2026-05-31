@@ -146,11 +146,13 @@
   .back:hover { color: var(--accent-ink); }
 
   @media (max-width: 640px) {
-    .row { grid-template-columns: 3.4rem 1fr; grid-template-areas: 'ref desc' 'pkg date'; row-gap: 0.5rem; }
-    .ref { grid-area: ref; }
+    /* clean media-object row: thumbnail left, title/snippet/date stacked right */
+    .row { grid-template-columns: 76px 1fr; grid-template-areas: 'pkg desc' 'pkg date'; gap: 0.3rem 0.9rem; align-items: start; padding: 1.1rem 0; }
+    .ref { display: none; }
+    .pkg { grid-area: pkg; align-self: start; }
+    .pkg img { width: 76px; height: 76px; }
     .desc { grid-area: desc; }
-    .pkg { grid-area: pkg; }
-    .date { grid-area: date; align-self: end; text-align: left; }
+    .date { grid-area: date; text-align: left; }
     .colhead { display: none; }
   }
 </style>

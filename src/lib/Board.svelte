@@ -689,12 +689,36 @@
   .telemetry { width: 100%; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--muted); }
 
   /* ── mobile re-floor-plan: single column, vertical bus ───────── */
+  /* ── mobile: strip the board chrome for a clean, content-first layout ── */
   @media (max-width: 760px) {
+    .board { padding: 1.4rem 1.3rem 2.5rem; }       /* sticky header handles top space */
+    .copper { display: none; }                      /* drop the trace overlay */
     .grid {
       grid-template-columns: 1fr;
       grid-template-areas: 'title' 'mcu' 'bank' 'errata' 'footer';
+      gap: 2.4rem;
     }
-    .qfp { display: none; }
-    .connectors { margin-left: 0; }
+    .bank { gap: 2.2rem; }
+    /* components become clean stacked blocks, not bordered chips */
+    .fp { border: none; background: transparent; padding: 0; backdrop-filter: none; }
+    .fp.dim { opacity: 1; }
+    .sym, .qfp, .fingers, .net-badge { display: none; }
+    .mcu .ref, .comp .ref { display: none; }        /* hide refdes jargon (U1 · DIP-8…) */
+    .mcu { padding-right: 0; }
+
+    .subtitle { font-size: 0.74rem; line-height: 1.5; }
+    .tagline { font-size: 0.7rem; letter-spacing: 0.18em; }
+    .bio { font-size: 1.06rem; line-height: 1.66; max-width: none; }
+    .tp { padding: 0.06em 0.32em; }
+
+    .readouts { gap: 1.6rem 2rem; }
+    .errata ul { gap: 0.9rem; }
+    .errata li { font-size: 0.92rem; }
+    .errata a { padding: 0.1rem 0; }                /* easier tap */
+
+    .foot { gap: 1rem 1.2rem; padding-top: 1.4rem; }
+    .connectors { margin-left: 0; gap: 0.6rem; width: 100%; }
+    .conn { padding: 0.6rem 0.85rem; }              /* ≥44px touch target */
+    .telemetry { width: 100%; }
   }
 </style>
