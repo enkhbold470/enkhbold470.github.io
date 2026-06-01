@@ -12,7 +12,6 @@
   }: { posts?: { title: string; slug: string; pubDate: string; image: string }[] } = $props();
 
   const stats = siteConfig.stats;
-  const awardsSub = `${stats.hackathonsWon} wins · ${stats.hackathonsEntered} hackathons · nationally & internationally recognized`;
   const metrics = [
     { value: stats.hackathonsEntered, suffix: '', label: 'hackathons' },
     { value: stats.hackathonsWon, suffix: '', label: 'wins' },
@@ -127,7 +126,7 @@
 
   <!-- §04 — awards & recognized prizes -->
   <section class="block">
-    <SecHeader idx="§04" title="AWARDS & HONORS" sub={awardsSub} />
+    <SecHeader idx="§04" title="AWARDS & HONORS" sub="11 wins · 26 hackathons · nationally & internationally recognized" />
     <ol class="awards">
       {#each awards as a, i (a.title + a.date + i)}
         <li class="award" data-reveal>
@@ -198,8 +197,10 @@
 <style>
   .dossier {
     width: min(1180px, 100%);
+    max-width: 100%;
     margin-inline: auto;
     padding: 0 clamp(1rem, 3vw, 2rem) 4rem;
+    overflow-x: clip;
     display: flex;
     flex-direction: column;
     gap: clamp(2.5rem, 6vw, 4.5rem);

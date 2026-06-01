@@ -79,6 +79,17 @@ test.describe('founder-bio SvelteKit migration', () => {
     expect((body.match(/<url>/g) ?? []).length).toBeGreaterThanOrEqual(3);
   });
 
+  test('dossier does not cause horizontal overflow on a narrow viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/');
+    await page.getByRole('heading', { name: 'AWARDS & HONORS' }).scrollIntoViewIfNeeded();
+    const overflows = await page.evaluate(() => {
+      const root = document.documentElement;
+      return root.scrollWidth > root.clientWidth + 1;
+    });
+    expect(overflows).toBe(false);
+  });
+
   test('llms.txt is served as a profile brief for LLMs', async ({ request }) => {
     const res = await request.get('/llms.txt');
     expect(res.status()).toBe(200);
