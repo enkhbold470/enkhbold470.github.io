@@ -197,8 +197,10 @@
 <style>
   .dossier {
     width: min(1180px, 100%);
+    max-width: 100%;
     margin-inline: auto;
     padding: 0 clamp(1rem, 3vw, 2rem) 4rem;
+    overflow-x: clip;
     display: flex;
     flex-direction: column;
     gap: clamp(2.5rem, 6vw, 4.5rem);
